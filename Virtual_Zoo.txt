@@ -1,0 +1,96 @@
+class Animal:
+    def __init__(self, name, hunger=0):
+        self._name=name
+        self._hunger=hunger
+    def get_name(self):
+        return self._name
+    def is_hungry(self):
+        if (self._hunger>0):
+            return True
+        else:
+            return False
+    def feed(self):
+        self._hunger=self._hunger-1
+
+    def talk(self):
+        return self._talk
+    def zoo_name(self, zoo_name="Hayaton"):
+        self._zoo_name = zoo_name
+        return self._zoo_name
+class Dog(Animal):
+    def talk(self, string):
+        self._string =string
+        return self._string
+    def fetch_stick(self):
+        print("There you go sir!")
+    pass
+class Cat(Animal):
+    def talk(self, string):
+        self._string = string
+        return self._string
+    def chase_laser(self):
+        print("Meeeeeow")
+    pass
+class Skunk(Animal):
+
+    def __init__(self, name, hunger, stink_count=6):
+        Animal.__init__(self, name, hunger)
+        self._stink_count = stink_count
+    def talk(self, string):
+        self._string = string
+        return self._string
+    def stink(self):
+        print("Dear lord!")
+    pass
+class Unicorn(Animal):
+    def talk(self, string):
+        self._string = string
+        return self._string
+    def sing(self):
+        print("I'm not your toy")
+    pass
+class Dragon(Animal):
+    def __init__(self, name, hunger, color="green"):
+        Animal.__init__(self, name, hunger)
+        self._color=color
+    def talk(self, string):
+        self._string = string
+        return self._string
+    def breathe_fire(self):
+        print("$@#$#@$")
+    pass
+def main ():
+    doggy = Dog("Brownie",10)
+    catty = Cat("Zelda", 3)
+    skunky = Skunk("Stinky", 0)
+    unicorny =Unicorn("Keith", 7)
+    dragony = Dragon("Lizzy",1450)
+    newdoggy = Dog("Doggo", 80)
+    newcatty = Cat("Kitty", 80)
+    newskunky = Skunk("Stinky Jr.",80)
+    newunicorny = Unicorn("Clair", 80)
+    newdragon = Dragon("McFly", 80)
+    zoo_list =[doggy, catty,skunky,unicorny,dragony, newdoggy, newcatty, newskunky,newunicorny,newdragon]
+    for i in zoo_list:
+        if i.is_hungry():
+            while i.is_hungry():
+                i.feed()
+            print((str(type(i))[17:]).split("'")[0], i._name)
+        if (i==doggy):
+            print(doggy.talk("Woof woof"))
+            doggy.fetch_stick()
+        elif (i==catty):
+            print(catty.talk("meow"))
+            catty.chase_laser()
+        elif (i==skunky):
+            print(skunky.talk("tsssss"))
+            skunky.stink()
+        elif (i==unicorny):
+            print(unicorny.talk("Good day, darling"))
+            unicorny.sing()
+        elif (i==dragony):
+            print(dragony.talk("Raaaawr"))
+            dragony.breathe_fire()
+    print(Animal.zoo_name(Animal))
+main()
+
