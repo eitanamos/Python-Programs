@@ -1,0 +1,90 @@
+class IDIterator:
+    def check_id_valid(self,id_number):
+        self.id_number=id_number
+        if (len(list(map(int, str(self.id_number)))) != 9 or list(map(int, str(self.id_number)))[0] == 0):
+            return "Number Must contain 9 digits not starting at 0"
+        else:
+            is_valid = False
+
+            def sum_digits(n):
+                return int(str(n)[0]) + int(str(n)[1])
+
+            res = list(map(int, str(self.id_number)))
+            i = 0
+            while i < len(res):
+                if (i % 2 == 1):
+                    res[i] = res[i] * 2
+                i = i + 1
+            j = 0
+            while j < len(res):
+                if (res[j] >= 10):
+                    res[j] = sum_digits(res[j])
+                j = j + 1
+            sum = 0
+            for i in res:
+                sum = sum + i
+            if sum % 10 == 0:
+                is_valid = True
+            return is_valid
+    def __init__(self, id):
+        self._id=id
+        self.li=[]
+        while len(self.li)!=10:
+            if (IDIterator.check_id_valid(self,self._id)):
+                self.li.append(self._id)
+            self._id = self._id+1
+
+    def iter(self):
+        self.move=-1
+        return self
+    def __next__(self):
+        if self.move<len(self.move)-1:
+            self.move = self.move + 1
+            return (self.li[self.move])
+        else:
+            raise Exception()
+def id_generator(number):
+    def check_id_valid(id_number):
+        if (len(list(map(int, str(id_number)))) != 9 or list(map(int, str(id_number)))[0] == 0):
+            return "Number Must contain 9 digits not starting at 0"
+        else:
+            is_valid = False
+
+            def sum_digits(n):
+                return int(str(n)[0]) + int(str(n)[1])
+
+            res = list(map(int, str(id_number)))
+            i = 0
+            while i < len(res):
+                if (i % 2 == 1):
+                    res[i] = res[i] * 2
+                i = i + 1
+            j = 0
+            while j < len(res):
+                if (res[j] >= 10):
+                    res[j] = sum_digits(res[j])
+                j = j + 1
+            sum = 0
+            for i in res:
+                sum = sum + i
+            if sum % 10 == 0:
+                is_valid = True
+            return is_valid
+    i=number
+    li=[]
+    while len(li)!=10:
+        if check_id_valid(i):
+            li.append(i)
+        i=i+1
+    yield li
+
+def main():
+    start = IDIterator(123456780)
+    for i in start.li:
+        print(i)
+
+    print(' ')
+    for i in id_generator(123456780):
+        print(i)
+main()
+
